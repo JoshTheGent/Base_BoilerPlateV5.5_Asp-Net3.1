@@ -1,0 +1,110 @@
+﻿@using Abp.Configuration.Startup
+@using Abp.Web.Mvc.Alerts
+@using Abp.Web.Security.AntiForgery
+@using JoshTheGent.Web.Resources
+@inject IAbpAntiForgeryManager AbpAntiForgeryManager
+@inject IMultiTenancyConfig MultiTenancyConfig
+@inject IWebResourceManager WebResourceManager
+@inject IAlertManager AlertManager
+@inject ILanguageManager LanguageManager
+@{
+    AbpAntiForgeryManager.SetCookie(Context);
+
+    var pageTitle = !string.IsNullOrWhiteSpace(ViewBag.Title) ? ViewBag.Title + " / " : "";
+    pageTitle += "JoshTheGent";
+}
+<!DOCTYPE html>
+<html lang="@LanguageManager.CurrentLanguage.Name">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>@pageTitle</title>
+    <link href="~/css/main.css" rel="stylesheet" asp-append-version="true" />
+    @await Html.PartialAsync("_Styles.cshtml")
+    @RenderSection("styles", required: false)
+</head>
+<body class="is-preload">
+
+<!-- Header -->
+<header id="header">
+    <a class="logo" asp-controller="Home" asp-action="Index">@L("HomePage")</a>
+    <nav>
+        <a href="#menu">Menu</a>
+    </nav>
+</header>
+
+<!-- Nav -->
+<nav id="menu">
+    <ul class="links">
+        <li><a class="nav-link" asp-controller="Home" asp-action="Index">@L("HomePage")</a></li>
+        <li><a class="nav-link" asp-controller="About" asp-action="Index">@L("About")</a></li>
+        <li><a href="generic.html">Generic</a></li>
+    </ul>
+</nav>
+        
+<!-- Banner -->
+<section id="banner">
+    <div class="inner">
+        <h1 id="primaryHeader">Josh</h1>
+        <p>A responsive business oriented template with a video background<br />
+            designed by <a href="https://templated.co/">TEMPLATED</a> and released under the Creative Commons License.</p>
+    </div>
+    <video autoplay loop muted playsinline src="img/banner.mp4"></video>
+</section>
+<div class="wrapper">
+    @*@await Html.PartialAsync("_Header.cshtml")*@
+        
+
+    @*@await Html.PartialAsync("_SideBar.cshtml")*@
+    <div class="content-wrapper">
+        @*@await Html.PartialAsync("_Alerts.cshtml")*@
+            
+        @RenderBody()
+    </div>
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="inner">
+            <div class="content">
+                <section>
+                    <h3>Accumsan montes viverra</h3>
+                    <p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing. Lorem ipsum dolor vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing sed feugiat eu faucibus. Integer ac sed amet praesent. Nunc lacinia ante nunc ac gravida.</p>
+                </section>
+                <section>
+                    <h4>Sem turpis amet semper</h4>
+                    <ul class="alt">
+                        <li><a href="#">Dolor pulvinar sed etiam.</a></li>
+                        <li><a href="#">Etiam vel lorem sed amet.</a></li>
+                        <li><a href="#">Felis enim feugiat viverra.</a></li>
+                        <li><a href="#">Dolor pulvinar magna etiam.</a></li>
+                    </ul>
+                </section>
+                <section>
+                    <h4>Magna sed ipsum</h4>
+                    <ul class="plain">
+                        <li><a href="#"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
+                        <li><a href="#"><i class="icon fa-facebook">&nbsp;</i>Facebook</a></li>
+                        <li><a href="#"><i class="icon fa-instagram">&nbsp;</i>Instagram</a></li>
+                        <li><a href="https://github.com/JoshTheGent"><i class="icon fa-github">&nbsp;</i>Github</a></li>
+                    </ul>
+                </section>
+            </div>
+            <div class="copyright">
+                &copy; Untitled. Photos <a href="https://unsplash.co">Unsplash</a>, Video <a href="https://coverr.co">Coverr</a>.
+            </div>
+        </div>
+    </footer>
+</div>
+
+@await Html.PartialAsync("_Scripts.cshtml")
+@RenderSection("scripts", required: false)
+@WebResourceManager.RenderScripts()
+<!-- Scripts -->
+<script src="~/view-resources/Views/Shared/browser.min.js"></script>
+<script src="~/view-resources/Views/Shared/breakpoints.min.js"></script>
+<script src="~/view-resources/Views/Shared/util.js"></script>
+<script src="~/view-resources/Views/Shared/main.js"></script>
+
+</body>
+</html>
