@@ -7,12 +7,14 @@
 {
     <environment names="Development">
         <script src="~/view-resources/Views/Account/Login.js" asp-append-version="true"></script>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
     </environment>
 
     <environment names="Staging,Production">
         <script src="~/view-resources/Views/Account/Login.min.js" asp-append-version="true"></script>
     </environment>
 }
+<meta name="google-signin-client_id" content="818610748982-rloofpkb07ntr2sjoun08k6d5r84qe75.apps.googleusercontent.com">
 <h4 class="text-center">@L("LogIn")</h4>
 <form id="LoginForm" asp-action="Login" method="post">
     <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
@@ -46,6 +48,7 @@
             <button type="submit" id="LoginButton" class="btn btn-primary btn-block btn-flat">@L("LogIn")</button>
         </div>
     </div>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
 </form>
 @*<div class="social-auth-links text-center mb-3">
         <p>- OR -</p>
