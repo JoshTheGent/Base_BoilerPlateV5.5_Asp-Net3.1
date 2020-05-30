@@ -22,7 +22,7 @@
     
 
     <title>@pageTitle</title>
-    <link href="~/css/main.css" rel="stylesheet" asp-append-version="true" />
+    
     @await Html.PartialAsync("_Styles.cshtml")
     @RenderSection("styles", required: false)
 </head>
@@ -41,7 +41,7 @@
     <ul class="links">
         <li><a class="nav-link" asp-controller="Home" asp-action="Index">@L("HomePage")</a></li>
         <li><a class="nav-link" asp-controller="About" asp-action="Index">@L("About")</a></li>
-        <li><a href="generic.html">Generic</a></li>
+        @*<li><a href="generic.html">Generic</a></li>*@
     </ul>
 </nav>
         
